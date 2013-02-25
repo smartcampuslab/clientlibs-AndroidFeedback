@@ -2,18 +2,28 @@ package eu.trentorise.smartcampuslab.android.feedback.Utils;
 
 import eu.trentorise.smartcampuslab.android.feedback.R;
 import eu.trentorise.smartcampuslab.android.feedback.interfaces.OnBackPressedListener;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.Button;
 import android.widget.SlidingDrawer;
 
+/**
+ * This class helps to use the FeedbackFragment
+ * @author jibbolus
+ *
+ */
+
 public class FeedbackFragmentHelper {
+	
+	public static final  String IMG_PASSED_KEY="screenshotbitmap1";
 
 	private FragmentActivity mHostActivity;
 	private FragmentManager mFragmentManager;
 	private SlidingDrawer mSlidingDrawer;
-
+	private Button mSlidingButton;
 	/**
 	 * Initialize the helper
 	 * 
@@ -27,6 +37,8 @@ public class FeedbackFragmentHelper {
 		if (mHostActivity.findViewById(R.id.feedback_sd).isShown()){
 			mSlidingDrawer = (SlidingDrawer) mHostActivity
 					.findViewById(R.id.feedback_sd);
+			mSlidingButton =(Button) mHostActivity.
+					findViewById(R.id.feedback_handle);
 			setSlidingDrawerListeners();
 		}
 		else
@@ -40,6 +52,19 @@ public class FeedbackFragmentHelper {
 			@Override
 			public void onDrawerOpened() {
 				//TODO send the screenshot to the fragment
+				
+				ScreenShooter.insertScreenshotInIntent(mHostActivity
+						.getIntent(), mHostActivity.
+						findViewById(R.id.fragment_container),
+						IMG_PASSED_KEY);
+				mSlidingButton.setBackgroundResource(R.drawable.btn_openfeedback);
+			}
+		});
+		mSlidingDrawer.setOnDrawerCloseListener(new SlidingDrawer.OnDrawerCloseListener() {
+			
+			@Override
+			public void onDrawerClosed() {
+				mSlidingButton.setBackgroundResource(R.drawable.btn_closefeedback);
 			}
 		});
 	}

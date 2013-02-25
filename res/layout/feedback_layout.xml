@@ -39,12 +39,14 @@
             android:id="@+id/feedback_handle"
             android:layout_width="23dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_opennotes"
+            android:background="@drawable/btn_openfeedback"
             android:clickable="true" />
 
-        <include
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/feedback_content"
-            layout="@layout/feedback_layout_internal" />
+            android:name="eu.trentorise.smartcampuslab.android.feedback.fragment.FeedbackFragment" />
     </SlidingDrawer>
 
 </FrameLayout>
