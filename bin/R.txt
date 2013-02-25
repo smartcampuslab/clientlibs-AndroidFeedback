@@ -3,15 +3,16 @@ int color feedbackboard_background 0x7f050000
 int drawable btn_opennotes 0x7f020000
 int drawable ic_launcher 0x7f020001
 int id RelativeLayout2 0x7f080007
-int id content 0x7f080002
 int id feedback_assignment_tv 0x7f080005
 int id feedback_attach_cb 0x7f080011
 int id feedback_attach_tv 0x7f080010
 int id feedback_background_ll 0x7f08000e
 int id feedback_comment_ll 0x7f08000b
+int id feedback_content 0x7f080002
 int id feedback_difficulty_ll 0x7f080006
 int id feedback_difficulty_sb 0x7f08000a
 int id feedback_easy_tv 0x7f080008
+int id feedback_handle 0x7f080003
 int id feedback_hard_tv 0x7f080009
 int id feedback_internal_root_rl 0x7f080004
 int id feedback_notes_et 0x7f08000d
@@ -20,7 +21,6 @@ int id feedback_sd 0x7f080001
 int id feedback_send_Btn 0x7f080013
 int id feedback_type_sp 0x7f08000c
 int id fragment_container 0x7f080000
-int id handle 0x7f080003
 int id rate_link_tv 0x7f080012
 int layout feedback_layout 0x7f030000
 int layout feedback_layout_internal 0x7f030001
