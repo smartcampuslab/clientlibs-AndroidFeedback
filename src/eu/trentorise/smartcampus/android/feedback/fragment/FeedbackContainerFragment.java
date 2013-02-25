@@ -1,27 +1,21 @@
 package eu.trentorise.smartcampus.android.feedback.fragment;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-
-import eu.trentorise.smartcampus.android.feedback.R;
-import eu.trentorise.smartcampus.android.feedback.interfaces.OnBackPressedListener;
-import eu.trentorise.smartcampus.android.feedback.interfaces.onDrawerVisibleListener;
-import eu.trentorise.smartcampus.android.feedback.utils.ScreenShooter;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.method.LinkMovementMethod;
-import android.text.method.MovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.SlidingDrawer;
 import android.widget.TextView;
+import eu.trentorise.smartcampus.android.feedback.R;
+import eu.trentorise.smartcampus.android.feedback.interfaces.OnBackPressedListener;
+import eu.trentorise.smartcampus.android.feedback.interfaces.onDrawerVisibleListener;
+import eu.trentorise.smartcampus.android.feedback.utils.ScreenShooter;
 
 /**
  * This class helps to use the FeedbackFragment
@@ -29,7 +23,7 @@ import android.widget.TextView;
  *
  */
 
-public class FeedbackContainerFragment  extends SherlockFragment{
+public class FeedbackContainerFragment  extends Fragment{
 	
 	public static final  String IMG_PASSED_KEY="screenshotbitmap1";
 

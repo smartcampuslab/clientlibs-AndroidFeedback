@@ -15,8 +15,9 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.support.v4.app.Fragment;
 
-public class FeedbackFragment extends SherlockFragment {
+public class FeedbackFragment extends Fragment {
 	
 	public Bitmap mScreenshot;
 	
