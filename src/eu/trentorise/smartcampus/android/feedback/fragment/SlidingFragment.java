@@ -23,17 +23,23 @@ import eu.trentorise.smartcampus.android.feedback.utils.ScreenShooter;
  *
  */
 
-public class FeedbackContainerFragment  extends Fragment{
+public class SlidingFragment  extends Fragment{
 	
+	public static final  String APPID_PASSED_KEY="appid1";
+	public static final  String ACTID_PASSED_KEY="activityid1";
 	public static final  String IMG_PASSED_KEY="screenshotbitmap1";
+	
+	private Bitmap mBitmap;
+	private String mAppId;
+	private String mActId;
 
 	private FragmentManager mFragmentManager;
 	private SlidingDrawer mSlidingDrawer;
 	private Button mSlidingButton;
 	private TextView mRateTextView;
-
-	private Bitmap mBitmap;
-
+	private TextView mAssignementTextView;
+	
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstance) {
@@ -49,12 +55,10 @@ public class FeedbackContainerFragment  extends Fragment{
 		mSlidingButton =(Button) getActivity().
 				findViewById(R.id.feedback_handle);
 		setSlidingDrawerListeners();
-		mBitmap = ScreenShooter.viewToBitmap((getActivity().
-				findViewById(R.id.feedback_internal_root_rl)).getRootView());
 		mRateTextView = (TextView) getActivity().findViewById(R.id.feedback_rate_link_tv);
 		mRateTextView.setMovementMethod(LinkMovementMethod.getInstance());
+		mAssignementTextView = (TextView)getActivity().findViewById(R.id.feedback_assignment_tv);
 	}
-
 
 
 	private void setSlidingDrawerListeners() {
@@ -62,6 +66,14 @@ public class FeedbackContainerFragment  extends Fragment{
 			
 			@Override
 			public void onDrawerOpened() {
+				
+				//This is an hack to avoid that the sliding drawer
+				//would be visible in the screenshot.
+				mSlidingDrawer.setVisibility(View.INVISIBLE);
+				mBitmap = ScreenShooter.viewToBitmap((getActivity().
+						findViewById(R.id.feedback_internal_root_rl)).getRootView());
+				mSlidingDrawer.setVisibility(View.VISIBLE);
+				
 				mSlidingButton.setBackgroundResource(R.drawable.btn_closefeedback);
 				((onDrawerVisibleListener)getActivity()).disableViewsBehindDrawer();
 				FeedbackFragment ff = (FeedbackFragment) getActivity().getSupportFragmentManager().
@@ -97,10 +109,15 @@ public class FeedbackContainerFragment  extends Fragment{
 	 * @param transactionTransition
 	 *            the transition cthat we want to apply
 	 */
-	public void replaceFragmentWithTransition(Fragment fragment,
-			int transactionTransition) {
-		FragmentTransaction fragmentTransaction = mFragmentManager
-				.beginTransaction();
+	public void replaceFragmentWithTransition(FragmentManager fm,
+			Fragment fragment,Integer transactionTransition) {
+		if(mSlidingDrawer!=null&& mSlidingDrawer.isShown())
+			mSlidingDrawer.animateClose();
+		FragmentTransaction fragmentTransaction = fm.beginTransaction();
+		if(transactionTransition==null)
+			transactionTransition = FragmentTransaction.TRANSIT_FRAGMENT_OPEN;
+		mAssignementTextView.setText(getString(R.string.feedback_assignment,
+				fragment.getClass().getName()));
 		fragmentTransaction.setTransition(transactionTransition);
 		fragmentTransaction.replace(R.id.fragment_container, fragment);
 		fragmentTransaction.commit();

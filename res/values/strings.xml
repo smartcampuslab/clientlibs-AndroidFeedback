@@ -2,7 +2,7 @@
 
     <string name="app_name">android.feedback</string>
 
-    <string name="feedback_assignment">Write a comment on  %s</string>
+    <string name="feedback_assignment">Write a comment on  %1$s</string>
 
     <string name="feedback_easy_text">Easy</string>
 
