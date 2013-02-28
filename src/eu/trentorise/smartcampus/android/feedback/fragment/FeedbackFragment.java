@@ -70,7 +70,6 @@ public class FeedbackFragment extends Fragment {
 				//TODO call the post
 			}
 		});
-		
 	}
 	
 	public void refreshImage(Bitmap image){

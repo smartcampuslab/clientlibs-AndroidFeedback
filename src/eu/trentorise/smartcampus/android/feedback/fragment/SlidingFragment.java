@@ -6,9 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.SlidingDrawer;
 import android.widget.TextView;
@@ -24,7 +27,7 @@ import eu.trentorise.smartcampus.android.feedback.utils.ScreenShooter;
  * 
  */
 
-public class SlidingFragment extends Fragment {
+public class SlidingFragment extends Fragment  implements OnTouchListener{
 
 	public static final String APPID_PASSED_KEY = "appid1";
 	public static final String ACTID_PASSED_KEY = "activityid1";
@@ -32,7 +35,6 @@ public class SlidingFragment extends Fragment {
 
 	private Bitmap mBitmap;
 
-	private FragmentManager mFragmentManager;
 	private SlidingDrawer mSlidingDrawer;
 	private Button mSlidingButton;
 	private TextView mAssignementTextView;
@@ -42,6 +44,7 @@ public class SlidingFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstance) {
 		View v = inflater.inflate(R.layout.feedback_layout, container);
+		//v.setOnTouchListener(this);
 		return v;
 	}
 
@@ -50,6 +53,7 @@ public class SlidingFragment extends Fragment {
 		super.onStart();
 		mSlidingDrawer = (SlidingDrawer) getActivity().findViewById(
 				R.id.feedback_sd);
+		mSlidingDrawer.setOnTouchListener(this);
 		mSlidingButton = (Button) getActivity().findViewById(
 				R.id.feedback_handle);
 		setSlidingDrawerListeners();
@@ -67,7 +71,6 @@ public class SlidingFragment extends Fragment {
 
 					@Override
 					public void onDrawerOpened() {
-
 						// This is an hack to avoid that the sliding drawer
 						// would be visible in the screenshot.
 						mSlidingDrawer.setVisibility(View.INVISIBLE);
@@ -75,18 +78,19 @@ public class SlidingFragment extends Fragment {
 								.findViewById(R.id.feedback_internal_root_rl))
 								.getRootView());
 						mSlidingDrawer.setVisibility(View.VISIBLE);
-
+						
 						mSlidingButton
 								.setBackgroundResource(R.drawable.btn_closefeedback);
 
-						((onDrawerVisibleListener) getActivity())
-								.disableViewsBehindDrawer();
 						FeedbackFragment ff = (FeedbackFragment) getActivity()
 								.getSupportFragmentManager().findFragmentById(
 										R.id.feedback_content);
+						
 						if (ff != null)
 							ff.refreshImage(mBitmap);
-
+						ViewGroup v = 
+								(ViewGroup) getActivity().findViewById(R.id.fragment_container);
+						mSlidingDrawer.setClickable(true);
 					}
 				});
 		mSlidingDrawer
@@ -94,10 +98,13 @@ public class SlidingFragment extends Fragment {
 
 					@Override
 					public void onDrawerClosed() {
+						Fragment currentFragment = getActivity().getSupportFragmentManager()
+								.findFragmentById(R.id.fragment_container);
 						mSlidingButton
 								.setBackgroundResource(R.drawable.btn_openfeedback);
-						((onDrawerVisibleListener) getActivity())
-								.enableViewsBehindDrawer();
+						ViewGroup v = 
+								(ViewGroup) getActivity().findViewById(R.id.fragment_container);
+						mSlidingDrawer.setClickable(false);
 					}
 				});
 	}
@@ -130,14 +137,29 @@ public class SlidingFragment extends Fragment {
 				.getSupportFragmentManager().beginTransaction();
 		if (transactionTransition == null)
 			transactionTransition = FragmentTransaction.TRANSIT_FRAGMENT_OPEN;
+		Fragment currentFragment = getActivity().getSupportFragmentManager()
+				.findFragmentById(R.id.fragment_container);	
 		if (mAssignementTextView != null) {
 			mAssignementTextView.setText(getString(
 					R.string.feedback_assignment, tag));
 		}
-		fragmentTransaction.addToBackStack(fragment.getTag());
+		if(currentFragment!=null && backstack){
+			fragmentTransaction.addToBackStack(currentFragment.getTag());
+		}
 		fragmentTransaction.setTransition(transactionTransition);
 		fragmentTransaction.replace(R.id.fragment_container, fragment, tag);
 		fragmentTransaction.commit();
+	}
+	
+	private void toggleEnableFragment(ViewGroup viewGroup,boolean enabled) {
+		int childCount = viewGroup.getChildCount();
+		for (int i = 0; i < childCount; i++) {
+			View view = viewGroup.getChildAt(i);
+			view.setEnabled(enabled);
+			if (view instanceof ViewGroup) {
+				toggleEnableFragment((ViewGroup) view,enabled);
+			}
+		}
 	}
 
 	/**
@@ -149,19 +171,18 @@ public class SlidingFragment extends Fragment {
 		if (mSlidingDrawer.isShown() && mSlidingDrawer.isOpened()) {
 			mSlidingDrawer.animateClose();
 			return true;
-		}/* else {
-			Fragment currentFragment = mFragmentManager
-					.findFragmentById(R.id.fragment_container);
-			// Checking if there is a fragment that it's listening for back
-			// button
-			if (currentFragment != null
-					&& currentFragment instanceof OnBackPressedListener) {
-				managed = ((OnBackPressedListener) currentFragment)
-						.onBackPressed();
-				return managed;
-			}
+		}
+		Fragment currentFragment = getActivity().getSupportFragmentManager()
+				.findFragmentById(R.id.fragment_container);
+		if(currentFragment!=null&& currentFragment instanceof OnBackPressedListener)
+			managed = ((OnBackPressedListener) currentFragment)
+				.onBackPressed();
+		return managed;
+	}
 
-		}*/
+	@Override
+	public boolean onTouch(View arg0, MotionEvent arg1) {
+		Log.e("lol", "touched");
 		return false;
 	}
 
