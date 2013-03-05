@@ -14,19 +14,20 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<RelativeLayout
+<!--<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <!-- Container for all fragments in the activity -->
+    Container for all fragments in the activity -->
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:name="eu.trentorise.smartcampus.android.feedback.fragment.FeedbackFragment"
+        android:id="@+id/feedback_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <SlidingDrawer
+   <!-- <SlidingDrawer
         android:id="@+id/feedback_sd"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -54,4 +55,4 @@
         </ScrollView>
     </SlidingDrawer>
 
-</RelativeLayout>
+</RelativeLayout> -->

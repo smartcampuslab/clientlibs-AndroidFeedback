@@ -4,11 +4,15 @@ import com.actionbarsherlock.app.SherlockFragment;
 
 import eu.trentorise.smartcampus.android.feedback.R;
 import eu.trentorise.smartcampus.android.feedback.model.Feedback;
+import eu.trentorise.smartcampus.android.feedback.utils.ScreenShooter;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -20,6 +24,8 @@ import android.widget.TextView;
 import android.support.v4.app.Fragment;
 
 public class FeedbackFragment extends Fragment {
+	
+	public static final String IMG_KEY = "screenshotbitmap1";
 	
 	private String mAppId;
 	private String mActId;
@@ -50,6 +56,7 @@ public class FeedbackFragment extends Fragment {
 				findViewById(R.id.feedback_type_sp);
 		mScreenShotIV = (ImageView) getActivity().
 				findViewById(R.id.feedback_screenshot_imgv);
+		setImage();
 		mAttachScreenshotCB = (CheckBox) getActivity().
 				findViewById(R.id.feedback_attach_cb);
 		mNoteEditText = (EditText) getActivity().
@@ -72,8 +79,19 @@ public class FeedbackFragment extends Fragment {
 		});
 	}
 	
+	private void setImage() {
+		Bitmap bmp = ScreenShooter.getScreenshotFromBundle(getArguments(), IMG_KEY);
+		mScreenShotIV.setImageBitmap(bmp);
+	}
+
 	public void refreshImage(Bitmap image){
 		this.mScreenShotIV.setImageBitmap(image);
+	}
+	
+	public void refreshText(String param){
+		String out = String.format(getResources().
+				getString(R.string.feedback_assignment), param);
+		this.mAssingmentTV.setText(out);
 	}
 	
 }

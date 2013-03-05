@@ -70,6 +70,9 @@ public class ScreenShooter {
 		b.putByteArray(screenshotKey, viewToCompressedBitmapAsByteArray(v));
 		i.putExtras(b);
 	}
+	public static void insertScreenshotInBundle(Bundle b,View v,String screenshotKey){
+		b.putByteArray(screenshotKey, viewToCompressedBitmapAsByteArray(v));
+	}
 	
 	/**
 	 * Set the ImageView to use the image contained in the intent
@@ -78,6 +81,18 @@ public class ScreenShooter {
 	 */
 	public static Bitmap getScreenshotFromIntent(Intent i,String screenshotKey) {
 		Bundle extras = i.getExtras();
+		if(extras!=null){
+			byte[] image=extras.getByteArray(screenshotKey);
+			return BitmapFactory.decodeByteArray(image, 0, image.length);
+		}
+		return null;
+	}
+	/**
+	 * Set the ImageView to use the image contained in the intent
+	 * @param i the intent where that contains the screenshot
+	 * @param screenshotKey a string that represent an id for that screenshot
+	 */
+	public static Bitmap getScreenshotFromBundle(Bundle extras,String screenshotKey) {
 		if(extras!=null){
 			byte[] image=extras.getByteArray(screenshotKey);
 			return BitmapFactory.decodeByteArray(image, 0, image.length);
