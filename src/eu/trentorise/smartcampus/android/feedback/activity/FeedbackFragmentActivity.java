@@ -5,13 +5,13 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 
 import com.slidingmenu.lib.SlidingMenu;
 import com.slidingmenu.lib.app.SlidingFragmentActivity;
 
 import eu.trentorise.smartcampus.android.feedback.R;
 import eu.trentorise.smartcampus.android.feedback.fragment.FeedbackSenderFragment;
-import eu.trentorise.smartcampus.android.feedback.interfaces.OnFeedbackSent;
 import eu.trentorise.smartcampus.android.feedback.utils.ScreenShooter;
 
 public abstract class FeedbackFragmentActivity extends SlidingFragmentActivity {
@@ -85,7 +85,15 @@ public abstract class FeedbackFragmentActivity extends SlidingFragmentActivity {
 		if (ff != null) {
 			Bitmap bmp = ScreenShooter.viewToBitmap(mSlidingMenu.getContent());
 			ff.refreshImage(bmp.copy(Bitmap.Config.RGB_565, false));
-			ff.refreshText(getSupportActionBar().getSelectedTab().getText().toString());
+			if (getSupportActionBar().getSelectedTab() != null) {
+				ff.refreshText(getSupportActionBar().getSelectedTab().getText().toString());
+			} else if (getSupportActionBar().getTitle() != null) {
+				ff.refreshText(getSupportActionBar().getTitle().toString());
+			}
+			Fragment f = getSupportFragmentManager().findFragmentById(android.R.id.content);
+			if (f != null) {
+				ff.refreshActivity(f.getClass().getName());
+			}
 		}
 	}
 	

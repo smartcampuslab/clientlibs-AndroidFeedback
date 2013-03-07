@@ -43,7 +43,6 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 	
 	public static final String IMG_KEY = "screenshotbitmap1";
 	
-	private String mAppId;
 	private String mActId;
 	
 	private TextView mAssingmentTV;
@@ -90,9 +89,9 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 				feedback.setNote(mNoteEditText.getText().toString());
 				feedback.setDifficulty(mDifficultySB.getProgress());
 				feedback.setType(mTypeSpinner.getSelectedItem().toString());
-				feedback.setAppId(mAppId);
 				feedback.setActivityId(mActId);
 				FeedbackFragmentActivity ffa = (FeedbackFragmentActivity) getActivity();
+				feedback.setAppId(ffa.getAppToken());
 				new SendFeedbackAsyncTask(FeedbackSenderFragment.this, feedback,
 						ffa.getAppToken(), ffa.getAuthToken()).execute(bmp);
 			}
@@ -106,6 +105,7 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 
 	public void refreshImage(Bitmap image){
 		this.mScreenShotIV.setImageBitmap(image);
+		this.bmp = image;
 	}
 	
 	public void refreshText(String param){
@@ -114,6 +114,10 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 		this.mAssingmentTV.setText(out);
 	}
 
+	public void refreshActivity(String actId) {
+		this.mActId = actId;
+	}
+	
 	@Override
 	public void onFeedbackSent(String s) {
 		Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
