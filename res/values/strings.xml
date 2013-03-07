@@ -15,5 +15,10 @@
     <string name="rate_app_text"><a href='market://'>Rate the app</a></string>
 
     <string name="feedback_send_btn_text">Send</string>
+    
+    <string name="feedback_sent_ok">La ringraziamo della sua collaborazione, 
+        la sua segnalazione e\' stata ricevuta con successo</string>
+    <string name="feedback_sent_failure">Something went wrong processing your 
+        feedback,please try again later.</string>
 
 </resources>

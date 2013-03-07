@@ -51,12 +51,7 @@ public class ScreenShooter {
 	 */
 	public static byte[] viewToCompressedBitmapAsByteArray(View v) {
 		Bitmap bitmap = viewToBitmap(v);
-		if (bitmap != null) {
-			ByteArrayOutputStream bais = new ByteArrayOutputStream();
-			bitmap.compress(CompressFormat.PNG, 50, bais);
-			return bais.toByteArray();
-		}
-		return null;
+		return bitmapAsByteArray(bitmap);
 	}
 	
 	/**
@@ -96,6 +91,15 @@ public class ScreenShooter {
 		if(extras!=null){
 			byte[] image=extras.getByteArray(screenshotKey);
 			return BitmapFactory.decodeByteArray(image, 0, image.length);
+		}
+		return null;
+	}
+
+	public static byte[] bitmapAsByteArray(Bitmap bitmap) {
+		if (bitmap != null) {
+			ByteArrayOutputStream bais = new ByteArrayOutputStream();
+			bitmap.compress(CompressFormat.PNG, 50, bais);
+			return bais.toByteArray();
 		}
 		return null;
 	}

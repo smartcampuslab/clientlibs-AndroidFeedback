@@ -22,7 +22,7 @@
     Container for all fragments in the activity -->
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:name="eu.trentorise.smartcampus.android.feedback.fragment.FeedbackFragment"
+        android:name="eu.trentorise.smartcampus.android.feedback.fragment.FeedbackSenderFragment"
         android:id="@+id/feedback_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
