@@ -93,7 +93,8 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 				FeedbackFragmentActivity ffa = (FeedbackFragmentActivity) getActivity();
 				feedback.setAppId(ffa.getAppToken());
 				new SendFeedbackAsyncTask(FeedbackSenderFragment.this, feedback,
-						ffa.getAppToken(), ffa.getAuthToken()).execute(bmp);
+						mAttachScreenshotCB.isChecked(), ffa.getAppToken(),
+						ffa.getAuthToken()).execute(bmp);
 			}
 		});
 	}

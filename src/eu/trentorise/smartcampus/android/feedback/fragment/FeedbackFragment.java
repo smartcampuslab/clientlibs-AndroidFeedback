@@ -4,6 +4,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
@@ -33,7 +34,7 @@ public class FeedbackFragment extends SherlockFragment {
 		layout.addView(mHandleButton);
 	}
 	
-	public void createButton(){
+	private void createButton(){
 		mHandleButton = new Button(getActivity());
 		mHandleButton.setBackgroundDrawable(getResources().
 				getDrawable(R.drawable.btn_openfeedback));

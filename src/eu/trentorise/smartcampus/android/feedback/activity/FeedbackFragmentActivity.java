@@ -6,6 +6,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.widget.CheckBox;
 
 import com.slidingmenu.lib.SlidingMenu;
 import com.slidingmenu.lib.app.SlidingFragmentActivity;
@@ -19,6 +20,7 @@ public abstract class FeedbackFragmentActivity extends SlidingFragmentActivity {
 	protected SlidingMenu mSlidingMenu;
 	private boolean mUseFeedback;
 	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,6 +30,7 @@ public abstract class FeedbackFragmentActivity extends SlidingFragmentActivity {
 		setUseFeedBack();
 		setUpMenu();
 	}
+
 
 	private void setUseFeedBack() {
 		try {

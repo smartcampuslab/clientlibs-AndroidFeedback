@@ -34,16 +34,18 @@ public class SendFeedbackAsyncTask extends AsyncTask<Bitmap, Void, String> {
 	private String authToken;
 	private Fragment mActivity;
 	private Feedback mFeedback;
+	private boolean mAttachScreenShot;
 	private Exception mEx;
 
 	public SendFeedbackAsyncTask(Fragment act, Feedback feedback,
-			String appToken, String authToken) {
+			boolean attach, String appToken, String authToken) {
 		super();
 		if (!(act instanceof OnFeedbackSent))
 			throw new IllegalStateException(
 					"The fragment must implement OnFeedbackSent");
 		this.mActivity = act;
 		this.mFeedback = feedback;
+		this.mAttachScreenShot = attach;
 		this.appToken = appToken;
 		this.authToken = authToken;
 	}
@@ -63,11 +65,14 @@ public class SendFeedbackAsyncTask extends AsyncTask<Bitmap, Void, String> {
 		mr.setMethod(Method.POST);
 
 		List<RequestParam> l = new ArrayList<RequestParam>();
-		FileRequestParam frp = new FileRequestParam();
-		frp.setContent(ScreenShooter.bitmapAsByteArray(params[0]));
-		frp.setParamName("file");
-		frp.setContentType("image/png");
-		l.add(frp);
+		
+		if (mAttachScreenShot) {
+			FileRequestParam frp = new FileRequestParam();
+			frp.setContent(ScreenShooter.bitmapAsByteArray(params[0]));
+			frp.setParamName("file");
+			frp.setContentType("image/png");
+			l.add(frp);
+		}
 
 		ObjectRequestParam orr = new ObjectRequestParam();
 		orr.setParamName("body");
@@ -97,10 +102,11 @@ public class SendFeedbackAsyncTask extends AsyncTask<Bitmap, Void, String> {
 		super.onPostExecute(result);
 		if (mEx != null) {
 			Log.e(SendFeedbackAsyncTask.class.toString(), mEx.toString());
-			((OnFeedbackSent) mActivity).onFeedbackSent(mActivity.getString(R.string.feedback_sent_failure));
-		}
-		else{
-			((OnFeedbackSent) mActivity).onFeedbackSent(mActivity.getString(R.string.feedback_sent_ok));
+			((OnFeedbackSent) mActivity).onFeedbackSent(mActivity
+					.getString(R.string.feedback_sent_failure));
+		} else {
+			((OnFeedbackSent) mActivity).onFeedbackSent(mActivity
+					.getString(R.string.feedback_sent_ok));
 			Log.i(SendFeedbackAsyncTask.class.toString(), "ok");
 		}
 	}
