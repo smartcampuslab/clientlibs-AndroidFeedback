@@ -32,7 +32,7 @@ public class FeedbackFragmentInflater {
 		}
 	}
 
-	private static Button createButton(final FeedbackFragmentActivity fedFragAct) {
+	public static Button createButton(final FeedbackFragmentActivity fedFragAct) {
 		Button b = new Button(fedFragAct);
 		b.setBackgroundDrawable(fedFragAct.getResources().
 				getDrawable(R.drawable.btn_openfeedback));

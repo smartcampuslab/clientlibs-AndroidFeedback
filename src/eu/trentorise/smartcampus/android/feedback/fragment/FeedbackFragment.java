@@ -12,6 +12,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 
 import eu.trentorise.smartcampus.android.feedback.R;
 import eu.trentorise.smartcampus.android.feedback.activity.FeedbackFragmentActivity;
+import eu.trentorise.smartcampus.android.feedback.utils.FeedbackFragmentInflater;
 
 public class FeedbackFragment extends SherlockFragment {
 	private FeedbackFragmentActivity mFedFragAct;
@@ -32,30 +33,10 @@ public class FeedbackFragment extends SherlockFragment {
 			throw new IllegalStateException(
 					"The first layout should be a RelativeLayout");
 		RelativeLayout layout =(RelativeLayout) firstViewInLayout;
-		createButton();
+		mHandleButton = FeedbackFragmentInflater.createButton(mFedFragAct);
 		layout.addView(mHandleButton);
 	}
 	
-	private void createButton(){
-		mHandleButton = new Button(getActivity());
-		mHandleButton.setBackgroundDrawable(getResources().
-				getDrawable(R.drawable.btn_openfeedback));
-		
-		RelativeLayout.LayoutParams lp = 
-				new RelativeLayout.LayoutParams(50,100);
-		
-		lp.addRule(RelativeLayout.CENTER_VERTICAL);
-		lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-		mHandleButton.setLayoutParams(lp);
-		
-		mHandleButton.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				mFedFragAct.toggle();
-			}
-		});
-	}
 	
 	public void toggleHandleButton(){
 		if(mFedFragAct.getSlidingMenu().isMenuShowing())
