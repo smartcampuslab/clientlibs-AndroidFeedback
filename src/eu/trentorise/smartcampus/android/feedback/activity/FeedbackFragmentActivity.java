@@ -6,6 +6,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.widget.CheckBox;
 
 import com.slidingmenu.lib.SlidingMenu;
@@ -40,6 +41,8 @@ public abstract class FeedbackFragmentActivity extends SlidingFragmentActivity {
 			mUseFeedback=aBundle.getBoolean("use-feedback");
 		} catch (NameNotFoundException e) {
 			mUseFeedback=false;
+			Log.e(FeedbackFragmentActivity.class.getName(),
+					"you should set the use-feedback metadata in app manifest");
 		}
 	}
 
@@ -52,12 +55,14 @@ public abstract class FeedbackFragmentActivity extends SlidingFragmentActivity {
 
 	private void setUpMenu() {
 		mSlidingMenu = getSlidingMenu();
+		mSlidingMenu.getContent().setFocusable(false);
 		mSlidingMenu.setMenu(R.layout.feedback_fragment_layout);
 		mSlidingMenu.setMode(SlidingMenu.RIGHT);
 		mSlidingMenu.setBehindOffsetRes(R.dimen.feedback_fragment_offset);
 		
 		if(!mUseFeedback)
 			mSlidingMenu.setSlidingEnabled(false);
+		
 		setUpMenuListeners();
 	}
 	

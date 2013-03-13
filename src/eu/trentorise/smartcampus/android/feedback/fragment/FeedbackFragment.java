@@ -21,7 +21,9 @@ public class FeedbackFragment extends SherlockFragment {
 	public void onStart() {
 		super.onStart();
 		mFedFragAct = (FeedbackFragmentActivity) getActivity();
-		inflateHandleButton();
+		
+		if(mFedFragAct.isUsingFeedback())
+			inflateHandleButton();
 	}
 	
 	private void inflateHandleButton() {
@@ -39,7 +41,9 @@ public class FeedbackFragment extends SherlockFragment {
 		mHandleButton.setBackgroundDrawable(getResources().
 				getDrawable(R.drawable.btn_openfeedback));
 		
-		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(50,100);
+		RelativeLayout.LayoutParams lp = 
+				new RelativeLayout.LayoutParams(50,100);
+		
 		lp.addRule(RelativeLayout.CENTER_VERTICAL);
 		lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		mHandleButton.setLayoutParams(lp);

@@ -89,14 +89,20 @@
                 android:layout_height="wrap_content"
                 android:entries="@array/feedbacks_type_items" />
 
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="0px"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+
             <EditText
                 android:id="@+id/feedback_notes_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/feedback_notes_hint" >
-
-                <requestFocus />
+                android:hint="@string/feedback_notes_hint"
+                android:nextFocusLeft="@+id/feedback_notes_et"
+                android:nextFocusUp="@+id/feedback_notes_et" >
             </EditText>
         </LinearLayout>
 

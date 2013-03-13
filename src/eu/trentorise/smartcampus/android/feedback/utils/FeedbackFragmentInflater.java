@@ -25,8 +25,11 @@ public class FeedbackFragmentInflater {
 					"The first layout should be a RelativeLayout");
 		
 		RelativeLayout layout =(RelativeLayout) firstViewInLayout;
-		Button b=createButton((FeedbackFragmentActivity) fedFragAct);
-		layout.addView(b);
+		
+		if(((FeedbackFragmentActivity)fedFragAct).isUsingFeedback()){
+			Button b=createButton((FeedbackFragmentActivity) fedFragAct);
+			layout.addView(b);
+		}
 	}
 
 	private static Button createButton(final FeedbackFragmentActivity fedFragAct) {
