@@ -95,6 +95,7 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 				new SendFeedbackAsyncTask(FeedbackSenderFragment.this, feedback,
 						mAttachScreenshotCB.isChecked(), ffa.getAppToken(),
 						ffa.getAuthToken()).execute(bmp);
+				ffa.toggle();
 			}
 		});
 	}
@@ -102,6 +103,13 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 	private void setImage() {
 		bmp = ScreenShooter.getScreenshotFromBundle(getArguments(), IMG_KEY);
 		mScreenShotIV.setImageBitmap(bmp);
+	}
+	
+	public void refresh(){
+		this.mNoteEditText.setText("");
+		this.mDifficultySB.setProgress(0);
+		this.mTypeSpinner.setSelection(0);
+		this.mAttachScreenshotCB.setChecked(false);
 	}
 
 	public void refreshImage(Bitmap image){

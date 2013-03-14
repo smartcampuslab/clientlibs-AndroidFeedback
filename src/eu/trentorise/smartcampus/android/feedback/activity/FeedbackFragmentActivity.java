@@ -91,6 +91,7 @@ public abstract class FeedbackFragmentActivity extends SlidingFragmentActivity {
 		FeedbackSenderFragment ff = (FeedbackSenderFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.feedback_fragment_container);
 		if (ff != null) {
+			ff.refresh();
 			Bitmap bmp = ScreenShooter.viewToBitmap(mSlidingMenu.getContent());
 			ff.refreshImage(bmp.copy(Bitmap.Config.RGB_565, false));
 			if (getSupportActionBar().getSelectedTab() != null) {

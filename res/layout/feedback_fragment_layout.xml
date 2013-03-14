@@ -109,7 +109,7 @@
         <LinearLayout
             android:id="@+id/feedback_background_ll"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/feedback_comment_ll"
             android:layout_marginBottom="5dp"
             android:gravity="center_vertical"
@@ -120,6 +120,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
                 android:src="@android:drawable/ic_menu_report_image" />
 
             <TextView
