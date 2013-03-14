@@ -71,6 +71,7 @@ public class SendFeedbackAsyncTask extends AsyncTask<Bitmap, Void, String> {
 			frp.setContent(ScreenShooter.bitmapAsByteArray(params[0]));
 			frp.setParamName("file");
 			frp.setContentType("image/png");
+			frp.setFilename("filename");
 			l.add(frp);
 		}
 
