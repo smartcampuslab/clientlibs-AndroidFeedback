@@ -31,6 +31,21 @@ public class FeedbackFragmentInflater {
 			layout.addView(b);
 		}
 	}
+	/**
+	 * 
+	 */
+	public static void inflateHandleButtonInRelativeLayout(Activity fedFragAct,
+			RelativeLayout layout){
+		if(!(fedFragAct instanceof FeedbackFragmentActivity))
+			throw new IllegalStateException(
+					"Activity must be a FeedbackFragmentActivity");
+		
+		
+		if(((FeedbackFragmentActivity)fedFragAct).isUsingFeedback()){
+			Button b=createButton((FeedbackFragmentActivity) fedFragAct);
+			layout.addView(b);
+		}
+	}
 
 	public static Button createButton(final FeedbackFragmentActivity fedFragAct) {
 		Button b = new Button(fedFragAct);
