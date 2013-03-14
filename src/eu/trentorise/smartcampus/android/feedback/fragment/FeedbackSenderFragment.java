@@ -21,6 +21,7 @@ import eu.trentorise.smartcampus.protocolcarrier.custom.MessageRequest;
 import eu.trentorise.smartcampus.protocolcarrier.custom.ObjectRequestParam;
 import eu.trentorise.smartcampus.protocolcarrier.custom.RequestParam;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -96,6 +98,9 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 						mAttachScreenshotCB.isChecked(), ffa.getAppToken(),
 						ffa.getAuthToken()).execute(bmp);
 				ffa.toggle();
+				InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(
+					      Context.INPUT_METHOD_SERVICE);
+					imm.hideSoftInputFromWindow(mNoteEditText.getWindowToken(), 0);
 			}
 		});
 	}
