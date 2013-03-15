@@ -124,19 +124,21 @@
                 android:scaleType="centerInside"
                 android:src="@android:drawable/ic_menu_report_image" />
 
-            <TextView
+           <!--  <TextView
                 android:id="@+id/feedback_attach_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
-                android:padding="2dp"
+				android:padding="2dp"
                 android:singleLine="false"
-                android:text="@string/feedback_screenshot_attach" />
+                android:text="@string/feedback_screenshot_attach" /> -->
 
             <CheckBox
                 android:id="@+id/feedback_attach_cb"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content" 
+                android:text="@string/feedback_screenshot_attach"/>
+
         </LinearLayout>
 
         <Button

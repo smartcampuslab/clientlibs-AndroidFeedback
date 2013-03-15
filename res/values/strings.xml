@@ -8,17 +8,17 @@
 
     <string name="feedback_hard_text">Hard</string>
 
-    <string name="feedback_notes_hint">Notes...</string>
+    <string name="feedback_notes_hint">Notes&#8230;</string>
 
-    <string name="feedback_screenshot_attach">Attach the screenshot</string>
+    <string name="feedback_screenshot_attach">Attach\nscreen-\nshot</string>
 
     <string name="rate_app_text"><a href='market://'>Rate the app</a></string>
 
     <string name="feedback_send_btn_text">Send</string>
     
-    <string name="feedback_sent_ok">La ringraziamo della sua collaborazione, 
-        la sua segnalazione e\' stata ricevuta con successo</string>
-    <string name="feedback_sent_failure">Something went wrong processing your 
-        feedback,please try again later.</string>
-
+    <string name="feedback_sent_ok">Thanks for your contribution. Your feedback was correctly sent.</string>
+    <string name="feedback_sent_failure">Something went wrong processing your feedback, please try again later.</string>
+	
+	<string name="problem">Problem</string>
+	<string name="suggestion">Suggestion</string>
 </resources>
