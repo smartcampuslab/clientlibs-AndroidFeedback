@@ -36,50 +36,50 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#8C81C1" />
 
-        <LinearLayout
-            android:id="@+id/feedback_difficulty_ll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/feedback_assignment_tv"
-            android:layout_marginBottom="20dp"
-            android:orientation="vertical" >
+<!--         <LinearLayout -->
+<!--             android:id="@+id/feedback_difficulty_ll" -->
+<!--             android:layout_width="match_parent" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:layout_below="@+id/feedback_assignment_tv" -->
+<!--             android:layout_marginBottom="20dp" -->
+<!--             android:orientation="vertical" > -->
 
-            <RelativeLayout
-                android:id="@+id/RelativeLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent" >
+<!--             <RelativeLayout -->
+<!--                 android:id="@+id/RelativeLayout2" -->
+<!--                 android:layout_width="match_parent" -->
+<!--                 android:layout_height="fill_parent" > -->
 
-                <TextView
-                    android:id="@+id/feedback_easy_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:text="@string/feedback_easy_text"
-                    android:textStyle="bold" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/feedback_easy_tv" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:layout_alignParentLeft="true" -->
+<!--                     android:layout_alignParentTop="true" -->
+<!--                     android:text="@string/feedback_easy_text" -->
+<!--                     android:textStyle="bold" /> -->
 
-                <TextView
-                    android:id="@+id/feedback_hard_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/feedback_easy_tv"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:text="@string/feedback_hard_text"
-                    android:textStyle="bold" />
-            </RelativeLayout>
+<!--                 <TextView -->
+<!--                     android:id="@+id/feedback_hard_tv" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:layout_alignBaseline="@+id/feedback_easy_tv" -->
+<!--                     android:layout_alignParentRight="true" -->
+<!--                     android:layout_alignParentTop="true" -->
+<!--                     android:text="@string/feedback_hard_text" -->
+<!--                     android:textStyle="bold" /> -->
+<!--             </RelativeLayout> -->
 
-            <SeekBar
-                android:id="@+id/feedback_difficulty_sb"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+<!--             <SeekBar -->
+<!--                 android:id="@+id/feedback_difficulty_sb" -->
+<!--                 android:layout_width="match_parent" -->
+<!--                 android:layout_height="wrap_content" /> -->
+<!--         </LinearLayout> -->
 
         <LinearLayout
             android:id="@+id/feedback_comment_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/feedback_difficulty_ll"
+            android:layout_below="@+id/feedback_assignment_tv"
             android:layout_marginBottom="20dp"
             android:orientation="vertical" >
 

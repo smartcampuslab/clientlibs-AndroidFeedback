@@ -29,8 +29,8 @@ public class Feedback {
 	// type (e.g., bug, problem, etc.)
 	private String type;
 	// task difficulty parameter
-	private Integer difficulty;
-	// id of the application where the feedback is created
+//	private Integer difficulty;
+//	// id of the application where the feedback is created
 	private String appId;
 	// id of the user task (corresponds to the fragment/form where the feedback is called)
 	private String activityId;
@@ -56,12 +56,12 @@ public class Feedback {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public Integer getDifficulty() {
-		return difficulty;
-	}
-	public void setDifficulty(Integer difficulty) {
-		this.difficulty = difficulty;
-	}
+//	public Integer getDifficulty() {
+//		return difficulty;
+//	}
+//	public void setDifficulty(Integer difficulty) {
+//		this.difficulty = difficulty;
+//	}
 	public String getAppId() {
 		return appId;
 	}
