@@ -52,7 +52,7 @@ public class FeedbackFragmentInflater {
 		b.setBackgroundDrawable(fedFragAct.getResources().
 				getDrawable(R.drawable.btn_openfeedback));
 		
-		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(50,100);
+		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(20,100);
 		lp.addRule(RelativeLayout.CENTER_VERTICAL);
 		lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		b.setLayoutParams(lp);
