@@ -49,8 +49,7 @@ public class FeedbackFragmentInflater {
 
 	public static Button createButton(final FeedbackFragmentActivity fedFragAct) {
 		Button b = new Button(fedFragAct);
-		b.setBackgroundDrawable(fedFragAct.getResources().
-				getDrawable(R.drawable.btn_openfeedback));
+		b.setBackgroundResource(R.drawable.btn_openfeedback);
 		
 		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(20,100);
 		lp.addRule(RelativeLayout.CENTER_VERTICAL);
