@@ -1,0 +1,25 @@
+<resources>
+
+    <string name="app_name">android.feedback</string>
+
+    <string name="feedback_assignment">Commenta %1$s</string>
+
+    <string name="feedback_easy_text">Facile</string>
+
+    <string name="feedback_hard_text">Difficile</string>
+
+    <string name="feedback_notes_hint">Note&#8230;</string>
+
+    <string name="feedback_screenshot_attach">Allega\nschermata</string>
+
+    <string name="rate_app_text"><a href='market://'>Valuta l\'app</a></string>
+
+    <string name="feedback_send_btn_text">Invia</string>
+    
+    <string name="feedback_sent_ok">La ringraziamo della sua collaborazione. La sua segnalazione è stata inviata con successo.</string> 
+    
+    <string name="feedback_sent_failure">C\'è stato un errore nell\'invio del feedback. Riprova più tardi.</string>
+	
+	<string name="problem">Problema</string>
+	<string name="suggestion">Suggerimento</string>
+</resources>
