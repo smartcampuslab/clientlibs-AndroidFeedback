@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.View;
 import android.widget.CheckBox;
 
 import com.slidingmenu.lib.SlidingMenu;
@@ -82,6 +83,10 @@ public abstract class FeedbackFragmentActivity extends SlidingFragmentActivity {
 
 			@Override
 			public void onOpened() {
+				//This two lines are necessary for 2.2 compatibility
+				View v = findViewById(android.R.id.content);
+				v.invalidate();
+				
 				refreshFragment();
 			}
 		});
