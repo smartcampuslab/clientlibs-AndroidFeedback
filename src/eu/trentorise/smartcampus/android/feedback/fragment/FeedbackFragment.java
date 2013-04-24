@@ -36,13 +36,5 @@ public class FeedbackFragment extends SherlockFragment {
 		mHandleButton = FeedbackFragmentInflater.createButton(mFedFragAct);
 		layout.addView(mHandleButton);
 	}
-	
-	
-	public void toggleHandleButton(){
-		if(mFedFragAct.getSlidingMenu().isMenuShowing())
-			mHandleButton.setBackgroundResource(R.drawable.btn_closefeedback);
-		else
-			mHandleButton.setBackgroundResource(R.drawable.btn_openfeedback);
-	}
 
 }

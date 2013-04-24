@@ -6,6 +6,7 @@ import java.util.List;
 import org.json.JSONObject;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.slidingmenu.lib.app.SlidingFragmentActivity;
 
 import eu.trentorise.smartcampus.android.common.GlobalConfig;
 import eu.trentorise.smartcampus.android.feedback.R;

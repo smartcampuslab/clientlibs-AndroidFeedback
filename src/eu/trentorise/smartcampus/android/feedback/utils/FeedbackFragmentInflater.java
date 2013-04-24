@@ -52,6 +52,7 @@ public class FeedbackFragmentInflater {
 
 	public static Button createButton(final FeedbackFragmentActivity fedFragAct) {
 		Button b = new Button(fedFragAct);
+		b.setId(R.id.feedback_button_handler);
 		b.setBackgroundResource(R.drawable.btn_openfeedback);
 
 		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
