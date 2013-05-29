@@ -49,7 +49,6 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 	private String mActId;
 	
 	private TextView mAssingmentTV;
-//	private SeekBar mDifficultySB;
 	private Spinner mTypeSpinner;
 	private ImageView mScreenShotIV;
 	private CheckBox mAttachScreenshotCB;
@@ -70,8 +69,6 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 		super.onStart();
 		mAssingmentTV = (TextView) getActivity().
 				findViewById(R.id.feedback_assignment_tv);
-//		mDifficultySB = (SeekBar) getActivity().
-//				findViewById(R.id.feedback_difficulty_sb);
 		mTypeSpinner = (Spinner) getActivity().
 				findViewById(R.id.feedback_type_sp);
 		mScreenShotIV = (ImageView) getActivity().
@@ -90,7 +87,6 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 			public void onClick(View v) {
 				Feedback feedback = new Feedback();
 				feedback.setNote(mNoteEditText.getText().toString());
-//				feedback.setDifficulty(mDifficultySB.getProgress());
 				feedback.setType(mTypeSpinner.getSelectedItem().toString());
 				feedback.setActivityId(mActId);
 				FeedbackFragmentActivity ffa = (FeedbackFragmentActivity) getActivity();
@@ -113,9 +109,8 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 	
 	public void refresh(){
 		this.mNoteEditText.setText("");
-//		this.mDifficultySB.setProgress(0);
 		this.mTypeSpinner.setSelection(0);
-		this.mAttachScreenshotCB.setChecked(false);
+		this.mAttachScreenshotCB.setChecked(true);
 	}
 
 	public void refreshImage(Bitmap image){
