@@ -37,30 +37,9 @@ public class FeedbackFragmentInflater {
 			layout = (RelativeLayout) firstViewInLayout;
 		}
 
-		if (((FeedbackFragmentActivity) fedFragAct).isUsingFeedback()) {
-			Button b = createButton((FeedbackFragmentActivity) fedFragAct);
-			layout.addView(b);
-		}
+		inflateHandleButtonInRelativeLayout(fedFragAct, layout);
 	}
 	
-	public static void inflateHandleButton(Activity fedFragAct) {
-		if (!(fedFragAct instanceof FeedbackFragmentActivity))
-			throw new IllegalStateException(
-					"Activity must be a FeedbackFragmentActivity");
-
-		ViewGroup rootView = (ViewGroup) ((ViewGroup) fedFragAct.findViewById(android.R.id.content)).getChildAt(0);
-		
-		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-		        ViewGroup.LayoutParams.MATCH_PARENT,
-		        ViewGroup.LayoutParams.MATCH_PARENT);
-		RelativeLayout rl = new RelativeLayout(fedFragAct);
-		rootView.addView(rl,params);
-
-		if (((FeedbackFragmentActivity) fedFragAct).isUsingFeedback()) {
-			Button b = createButton((FeedbackFragmentActivity) fedFragAct);
-			rl.addView(b);
-		}
-	}
 
 	/**
 	 * 
