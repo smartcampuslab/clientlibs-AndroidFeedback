@@ -2,6 +2,7 @@ package eu.trentorise.smartcampus.android.feedback.utils;
 
 import eu.trentorise.smartcampus.android.feedback.R;
 import eu.trentorise.smartcampus.android.feedback.activity.FeedbackFragmentActivity;
+import android.R.layout;
 import android.app.Activity;
 import android.content.Context;
 import android.util.DisplayMetrics;
@@ -22,16 +23,42 @@ public class FeedbackFragmentInflater {
 			throw new IllegalStateException(
 					"Activity must be a FeedbackFragmentActivity");
 
-		View firstViewInLayout = ((ViewGroup) v).getChildAt(0);
-		if (!(firstViewInLayout instanceof RelativeLayout))
-			throw new IllegalStateException(
-					"The first layout should be a RelativeLayout");
-
-		RelativeLayout layout = (RelativeLayout) firstViewInLayout;
+		ViewGroup firstViewInLayout = (ViewGroup) ((ViewGroup) v).getChildAt(0);
+		RelativeLayout layout;
+		if (!(firstViewInLayout instanceof RelativeLayout)){
+			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+			        ViewGroup.LayoutParams.MATCH_PARENT,
+			        ViewGroup.LayoutParams.MATCH_PARENT);
+			RelativeLayout rl = new RelativeLayout(fedFragAct);
+			layout=rl;
+			firstViewInLayout.addView(rl,params);
+		}
+		else{
+			layout = (RelativeLayout) firstViewInLayout;
+		}
 
 		if (((FeedbackFragmentActivity) fedFragAct).isUsingFeedback()) {
 			Button b = createButton((FeedbackFragmentActivity) fedFragAct);
 			layout.addView(b);
+		}
+	}
+	
+	public static void inflateHandleButton(Activity fedFragAct) {
+		if (!(fedFragAct instanceof FeedbackFragmentActivity))
+			throw new IllegalStateException(
+					"Activity must be a FeedbackFragmentActivity");
+
+		ViewGroup rootView = (ViewGroup) ((ViewGroup) fedFragAct.findViewById(android.R.id.content)).getChildAt(0);
+		
+		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+		        ViewGroup.LayoutParams.MATCH_PARENT,
+		        ViewGroup.LayoutParams.MATCH_PARENT);
+		RelativeLayout rl = new RelativeLayout(fedFragAct);
+		rootView.addView(rl,params);
+
+		if (((FeedbackFragmentActivity) fedFragAct).isUsingFeedback()) {
+			Button b = createButton((FeedbackFragmentActivity) fedFragAct);
+			rl.addView(b);
 		}
 	}
 
