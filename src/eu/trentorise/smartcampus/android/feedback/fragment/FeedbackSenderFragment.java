@@ -57,6 +57,8 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 
 	private Bitmap bmp;
 	
+	private Context mCtx;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 	@Override
 	public void onStart() {
 		super.onStart();
+		mCtx = getActivity().getApplicationContext();
 		mAssingmentTV = (TextView) getActivity().
 				findViewById(R.id.feedback_assignment_tv);
 		mTypeSpinner = (Spinner) getActivity().
@@ -130,7 +133,7 @@ public class FeedbackSenderFragment extends Fragment implements OnFeedbackSent {
 	
 	@Override
 	public void onFeedbackSent(String s) {
-		Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
+		Toast.makeText(mCtx, s, Toast.LENGTH_SHORT).show();
 	}
 
 }

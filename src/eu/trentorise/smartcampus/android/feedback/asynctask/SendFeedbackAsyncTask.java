@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.codehaus.jackson.map.util.JSONPObject;
-
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
+import android.util.Log;
 import eu.trentorise.smartcampus.android.common.GlobalConfig;
 import eu.trentorise.smartcampus.android.common.Utils;
 import eu.trentorise.smartcampus.android.feedback.R;
@@ -22,20 +25,16 @@ import eu.trentorise.smartcampus.protocolcarrier.custom.RequestParam;
 import eu.trentorise.smartcampus.protocolcarrier.exceptions.ConnectionException;
 import eu.trentorise.smartcampus.protocolcarrier.exceptions.ProtocolException;
 import eu.trentorise.smartcampus.protocolcarrier.exceptions.SecurityException;
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 
 public class SendFeedbackAsyncTask extends AsyncTask<Bitmap, Void, String> {
 
 	private String appToken;
 	private String authToken;
-	private Fragment mActivity;
+	private Fragment mFragment;
 	private Feedback mFeedback;
 	private boolean mAttachScreenShot;
 	private Exception mEx;
+	private Context mContext;
 
 	public SendFeedbackAsyncTask(Fragment act, Feedback feedback,
 			boolean attach, String appToken, String authToken) {
@@ -43,20 +42,21 @@ public class SendFeedbackAsyncTask extends AsyncTask<Bitmap, Void, String> {
 		if (!(act instanceof OnFeedbackSent))
 			throw new IllegalStateException(
 					"The fragment must implement OnFeedbackSent");
-		this.mActivity = act;
+		this.mFragment = act;
 		this.mFeedback = feedback;
 		this.mAttachScreenShot = attach;
 		this.appToken = appToken;
 		this.authToken = authToken;
+		this.mContext = act.getActivity().getApplicationContext();
 	}
 
 	@Override
 	protected String doInBackground(Bitmap... params) {
 
-		ProtocolCarrier pc = new ProtocolCarrier(mActivity.getActivity(), null);
+		ProtocolCarrier pc = new ProtocolCarrier(mFragment.getActivity(), null);
 		String url;
 		try {
-			url = GlobalConfig.getAppUrl(mActivity.getActivity());
+			url = GlobalConfig.getAppUrl(mFragment.getActivity());
 		} catch (ProtocolException e) {
 			mEx = e;
 			return null;
@@ -103,10 +103,10 @@ public class SendFeedbackAsyncTask extends AsyncTask<Bitmap, Void, String> {
 		super.onPostExecute(result);
 		if (mEx != null) {
 			Log.e(SendFeedbackAsyncTask.class.toString(), mEx.toString());
-			((OnFeedbackSent) mActivity).onFeedbackSent(mActivity
+			((OnFeedbackSent) mFragment).onFeedbackSent(mContext
 					.getString(R.string.feedback_sent_failure));
 		} else {
-			((OnFeedbackSent) mActivity).onFeedbackSent(mActivity
+			((OnFeedbackSent) mFragment).onFeedbackSent(mContext
 					.getString(R.string.feedback_sent_ok));
 			Log.i(SendFeedbackAsyncTask.class.toString(), "ok");
 		}
